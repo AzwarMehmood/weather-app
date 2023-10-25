@@ -113,7 +113,15 @@ class _HomeState extends State<Home> {
                         ),
                         Expanded(
                           child: TextField(
-                            textInputAction: TextInputAction.go,
+                            textInputAction: TextInputAction.search,
+                            onSubmitted: (value){
+                              if(((value).replaceAll(" ", "")).isNotEmpty) {
+                                Navigator.pushReplacementNamed(
+                                    context, "/", arguments: {
+                                  "searchText": value,
+                                });
+                              }
+                            },
                             controller: searchController,
                             decoration: InputDecoration(
                               hintText: "Search $city",
